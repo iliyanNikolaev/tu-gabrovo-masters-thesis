@@ -1,7 +1,13 @@
-# Technical University of Gabrovo
-Prototype of a thesis for the completion of a Master's degree at Technical University Gabrovo.
+<h1 align="center">
+  Technical University of Gabrovo
+</h1>
+
+<p align="center">
+  <img src="readmeAssets/logo-tu-gabrovo.png" alt="logo">
+</p>
 
 # Sensor Hub for Environmental Monitoring
+Prototype of a thesis for the completion of a Electronics Master's degree.
 
 ## Project Overview:
 
@@ -30,7 +36,7 @@ The system is designed to allow the addition of new sensors or functionalities i
 3. **Educational Goals:** The project can be utilized in educational environments to stimulate students' interest in electronics and IoT technologies.
 
 # Electric circuit
-![circuit](image.png)
+![circuit](readmeAssets/electricCircuit.png)
 
 ---
 
