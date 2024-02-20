@@ -6,8 +6,8 @@ const cors = require('cors');
 function configExpress(app) {
     app.use(cors());
     app.use(express.json());
-    app.use(expressLayouts);
     app.use(express.static('public'));
+    app.use(expressLayouts);
     app.set('view engine', 'ejs');
 }
 
