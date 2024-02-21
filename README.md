@@ -10,12 +10,13 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 
 ## Components
 - Arduino UNO R3 (ATmega328p)
+- DHT22 (Temperature and Humidity Sensor)
 - KY-037 (Noise Level) sensor
 - MQ-135 (Gas sensor)
 - LCD1601A HD44780 (Text display)
 - TTP224 (Keypad module)
 - 6 resistors of 220 ohms each
-- Prototype board SYB-102
+- Prototype board MB-102
 
 ## Sensor Descriptions
 1. **DHT22 (Temperature and Humidity Sensor):**
