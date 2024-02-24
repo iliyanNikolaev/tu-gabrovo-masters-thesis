@@ -1,10 +1,12 @@
 #include <DHT.h>
+#include "MQ135.h"
 
 #define DHT_PIN 2
-int KY037_DIGITAL_PIN = 6;
-int MQ135_PIN = A1;
 
+MQ135 gasSensor = MQ135(A1);
 DHT dht(DHT_PIN, DHT22);
+
+int KY037_DIGITAL_PIN = 6;
 
 void setup() {
   Serial.begin(9600);
@@ -15,13 +17,11 @@ void setup() {
 void loop() {
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
-  int dNoiseLevel = digitalRead(KY037_DIGITAL_PIN);
-  int gasValue = analogRead(MQ135_PIN);
-  Serial.print(temperature);
-  Serial.print("°C, ");
-  Serial.print(humidity);
-  Serial.print(", Gas Value: ");
-  Serial.println(gasValue);
+  float ppm = gasSensor.getCorrectedPPM(temperature, humidity);
+  
+  int dNoiseLevel = digitalRead(KY037_DIGITAL_PIN); // 0 || 1
 
-  delay(50);
+  Serial.println("Temperature: " + String(temperature) + "°C, Humidity: " + String(humidity) + "%, CO PPM: " + String(ppm));
+
+  delay(300);
 }
