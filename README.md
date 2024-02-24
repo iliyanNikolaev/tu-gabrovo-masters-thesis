@@ -3,10 +3,10 @@
 </p>
 
 # Sensor Hub for Environmental Monitoring
-Prototype of a thesis for the completion of a Electronics Master's degree.
+Thesis for the completion of a Electronics Master's degree.
 
 ## Description
-This project involves the use of Arduino UNO R3 and various sensors to monitor temperature, humidity, noise level, and air quality. The information is transmitted via the serial port, where a Node.js server reads and provides an interface for visualizing the data.
+This project involves the use of Arduino UNO R3 and various sensors to monitor temperature, humidity, and air quality. The information is transmitted via the serial port, where a Node.js server reads and provides an interface for visualizing the data.
 
 ## Components
 - Arduino UNO R3 (ATmega328p)
@@ -16,7 +16,7 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 - LCD1601A HD44780 (Text display)
 - Potentiometer 10k ohms
 - TTP224 (Keypad module)
-- 6 resistors of 220 ohms each
+- 7 resistors of 220 ohms each
 - Prototype board MB-102
 
 ## Components Descriptions
@@ -24,15 +24,15 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
    The DHT22 sensor is used to measure both temperature and humidity levels in the environment. It communicates with the Arduino through a digital pin and provides accurate readings.
 
 2. **KY-037 (Noise Level Sensor):**
-   The KY-037 sensor detects the noise level in the surroundings. It outputs an analog signal that corresponds to the noise level, which can be read by the Arduino through an analog pin.
+   The KY-037 sensor detects noise. 
 
 3. **MQ-135 (Gas Sensor):**
-   The MQ-135 sensor is capable of sensing various gases such as alcohol, benzene, smoke, and CO2. It provides analog output, which can be interpreted by the Arduino to determine the air quality.
+   The MQ-135 sensor is capable of sensing various gases such as alcohol, benzene, smoke, and CO2. In this project the sensor measure CO2.
 
 4. **LCD1601A HD44780 (Text Display):**
-   The LCD1601A HD44780 display is used to output the sensor readings in a user-friendly format. It provides a clear visual representation of the data, allowing users to monitor the atmospheric conditions easily.
+   The LCD1601A HD44780 display is used to output the sensor readings. It provides a clear visual representation of the data, allowing users to monitor the atmospheric conditions easily.
 
-5. **TTP224 (Keypad Module):**
+5. **TTP224 (Keypad Module):**s
    The TTP224 keypad module allows users to interact with the system by pressing different buttons. It provides multiple output pins, each corresponding to a different button, which can be read by the Arduino to trigger various actions.
 
 ## Setup and Installation
