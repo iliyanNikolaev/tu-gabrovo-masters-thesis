@@ -14,11 +14,12 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 - KY-037 (Noise Level) sensor
 - MQ-135 (Gas sensor)
 - LCD1601A HD44780 (Text display)
+- Potentiometer 10k ohms
 - TTP224 (Keypad module)
 - 6 resistors of 220 ohms each
 - Prototype board MB-102
 
-## Sensor Descriptions
+## Components Descriptions
 1. **DHT22 (Temperature and Humidity Sensor):**
    The DHT22 sensor is used to measure both temperature and humidity levels in the environment. It communicates with the Arduino through a digital pin and provides accurate readings.
 
