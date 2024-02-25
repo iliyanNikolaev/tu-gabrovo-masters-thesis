@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real-time Sensor Data</title>
-</head>
-<body>
-  <h1>Real-time Sensor Data</h1>
-  <div>
-    <p id="display"></p>
-  </div>
   <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-  <script>
-    const socket = io();
-    const display = document.getElementById('display');
-    
-    socket.on('sensorHubData', (data) => {
-      display.textContent = data;
-    });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js"></script>
+  <script type="module" src="/client/app.js"></script>
+  <style>
+    body {
+      background-color: #f0f2f5;
+    }
+    header{
+      display: flex;
+      justify-content: center;
+    }
+    main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="/client/assets/tu-gabrovo-header.png" alt="tu-gabrovo.logo">
+  </header>
+  <main>
+    <h1>Дипломна Работа - Сензорен хъб за екологичен мониторинг</h1>
+    <h2>на студента: инж. Илиян Николаев Мъцин, ОКС "Магистър", специалност: "Електроника", фак. № 22107005</h2>
+    <h2>Ръководител: доц. д-р инж. П. Проданов</h2>
+    <div id="display">
+      <div id="temperature">Температура: 23.10 °C</div>
+      <div id="humidity">Влажност на въздуха: 44.60 %</div>
+      <div id="co2">Ниво на въглероден диоксид във въздуха: 5.20 ppm</div>
+      <div id="noise">Ниво на шума: 49.01 - 53.00 dB</div>
+    </div>
+    <div id="chart"></div>
+  </main>
 </body>
+
 </html>

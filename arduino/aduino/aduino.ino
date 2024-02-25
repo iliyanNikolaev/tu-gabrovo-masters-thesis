@@ -63,8 +63,8 @@ void loop() {
   int aNoiseLevel = analogRead(KY037_ANALOG_PIN); // 0 - 1023
   char* dBNoiseLevel = KY037AnalogTodBParser(aNoiseLevel);
 
-  Serial.println("Temperature: " + String(temperature) + "°C, Humidity: " + String(humidity) + "%, CO PPM: " + String(ppm) + ", Noise(GM1352): " + String(dBNoiseLevel) + ", KY037 Analog Value: " + String(aNoiseLevel));
+  Serial.println(String(temperature) + " °C, " + String(humidity) + " %, " + String(ppm) + " ppm, " + String(dBNoiseLevel) + ", " + String(aNoiseLevel));
   // Serial.println(aNoiseLevel);
 
-  delay(50);
+  delay(25);
 }
