@@ -10,15 +10,21 @@ LiquidCrystal lcd(7, 8, 10, 11, 12, 13);
 // LiquidCrystal(rs, enable, d4, d5, d6, d7)
 
 int KY037_DIGITAL_PIN = 6;
+int KY037_ANALOG_PIN = A0;
 
 void setup() {
-  Serial.begin(9600);
-  lcd.begin(16,2);
   dht.begin();
+
+  lcd.begin(16, 2);
   lcd.clear();
   lcd.print("Hello, A");
   lcd.setCursor(0, 1);
   lcd.print("rduino!");
+
+  pinMode(KY037_DIGITAL_PIN, INPUT);
+  pinMode(KY037_ANALOG_PIN, INPUT);
+  
+  Serial.begin(9600);
 }
 
 
@@ -26,11 +32,11 @@ void loop() {
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
   float ppm = gasSensor.getCorrectedPPM(temperature, humidity);
-  
-  int dNoiseLevel = digitalRead(KY037_DIGITAL_PIN); 
-  // 0 || 1
 
-  Serial.println("Temperature: " + String(temperature) + "°C, Humidity: " + String(humidity) + "%, CO PPM: " + String(ppm));
+  int dNoiseLevel = digitalRead(KY037_DIGITAL_PIN);  // 0 || 1
+  int aNoiseLevel = analogRead(KY037_ANALOG_PIN); // 0 - 1023
+  Serial.println("Temperature: " + String(temperature) + "°C, Humidity: " + String(humidity) + "%, CO PPM: " + String(ppm) + ", Noise: " + String(aNoiseLevel));
+  // Serial.println(aNoiseLevel);
 
-  delay(300);
+  delay(50);
 }
