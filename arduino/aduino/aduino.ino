@@ -12,7 +12,6 @@ LiquidCrystal lcd(7, 8, 10, 11, 12, 13);
 int KY037_DIGITAL_PIN = 6;
 int KY037_ANALOG_PIN = A0;
 int LED_PIN_1 = 3;
-int resistor = 220;
 
 void setup() {
   dht.begin();
@@ -25,7 +24,7 @@ void setup() {
   pinMode(LED_PIN_1, OUTPUT);
 
   Serial.begin(9600);
-}
+}\
 
 char* KY037AnalogTodBParserWeb(int value) {
   if (value <= 327) {
@@ -79,9 +78,6 @@ char* KY037AnalogTodBParserDisplay(int value) {
   }
 }
 
-int calculateBrightness(int noiseLevel, int maxResistorValue) {
-  return map(noiseLevel, 0, 1, 0, maxResistorValue);
-}
 
 int counter = 0;
 
@@ -94,9 +90,6 @@ void loop() {
   int aNoiseLevel = analogRead(KY037_ANALOG_PIN);    // 0 - 1023
   char* dBNoiseLevelWeb = KY037AnalogTodBParserWeb(aNoiseLevel);
   char* dBNoiseLevelDisplay = KY037AnalogTodBParserDisplay(aNoiseLevel);
-
-  int ledBrightness = calculateBrightness(dNoiseLevel, resistor);
-  analogWrite(LED_PIN_1, ledBrightness);
 
   if (dNoiseLevel == 1) {
     digitalWrite(LED_PIN_1, HIGH);
