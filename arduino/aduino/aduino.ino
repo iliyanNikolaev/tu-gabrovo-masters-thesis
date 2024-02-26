@@ -105,32 +105,32 @@ void loop() {
   }
 
   lcd.clear();
-  if (counter < 200) {
-    lcd.print(temperature);
+  if (counter < 75) {
+    lcd.print("Temp: ");
     lcd.setCursor(0, 1);
-    lcd.print("C");
-  } else if (counter < 400) {
-    lcd.print(humidity);
+    lcd.print(String(temperature)+" C");
+  } else if (counter < 150) {
+    lcd.print("Humid: ");
     lcd.setCursor(0, 1);
-    lcd.print("%");
-  } else if (counter < 800) {
-    lcd.print(ppm);
+    lcd.print(String(humidity)+" %");
+  } else if (counter < 300) {
+    lcd.print("Co2");
     lcd.setCursor(0, 1);
-    lcd.print("ppm");
-  } else if (counter < 1200) {
+    lcd.print(String(ppm)+"ppm");
+  } else if (counter < 450) {
+    lcd.print("Noise dB");
+    lcd.setCursor(0, 1);
     lcd.print(dBNoiseLevelDisplay);
-    lcd.setCursor(0, 1);
-    lcd.print("dB");
-  } else if (counter == 1201) {
+  } else if (counter == 451) {
     counter = 0;
-    lcd.print(temperature);
+    lcd.print("Temp: ");
     lcd.setCursor(0, 1);
-    lcd.print("C");
+    lcd.print(String(temperature)+" C");
   }
 
   Serial.println(String(temperature) + " °C, " + String(humidity) + " %, " + String(ppm) + " ppm, " + String(dBNoiseLevelWeb) + ", " + String(aNoiseLevel));
 
   counter++;
 
-  delay(25);
+  delay(2);
 }
