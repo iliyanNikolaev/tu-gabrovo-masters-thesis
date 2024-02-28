@@ -5,19 +5,48 @@
 # Sensor Hub for Environmental Monitoring
 Thesis for the completion of a Electronics Master's degree.
 
-## Description
+# Description
 This project involves the use of Arduino UNO R3 and various sensors to monitor temperature, humidity, and air quality. The information is transmitted via the serial port, where a Node.js server reads and provides an interface for visualizing the data.
 
+# Software
+
+## Arduino Software
+* Programming Language: **Arduino Programming Language**
+
+#### Used Libraries:
+- **DHT.h**
+- **MQ135.h**
+- **LiquidCrystal.h**
+
+## Web Software
+* Programming Language: **JavaScript**
+* Markup and Styling: **HTML**, **CSS**
+#### Used Libraries:
+
+#### Server
+- **express**
+- **socket.io**
+- **serialport**
+- **@serialport/parser-readline**
+#### Client
+- **socket.io** (via cdn)
+- **plotly.js** (via cdn)
+
+## Electric Circuit
+<img src="readmeAssets/IMG_0433.jpg" alt="arduino-circuit" style="width: 500px;">
+<img src="readmeAssets/IMG_0434.jpg" alt="arduino-circuit" style="width: 500px;">
+
+
 ## Components
-- Arduino UNO R3 (ATmega328p)
-- DHT22 (Temperature and Humidity Sensor)
-- KY-037 (Noise Level) sensor
-- MQ-135 (Gas sensor)
-- LCD1601A HD44780 (Text display)
-- Potentiometer 10k ohms
-- TTP224 (Keypad module)
-- 7 resistors of 220 ohms each
-- Prototype board MB-102
+- 	Single-board microcontroller: **Arduino UNO R3(ATmega328p)** Clone
+- Temperature and Humidity Sensor: **DHT22**
+- Noise Level sensor: **KY-037** 
+- Gas sensor: **MQ-135**
+- Display: **LCD1601A HD44780**
+- Potentiometer: 10k ohms
+- Resistors: 9x 220 ohms 1/4 W
+- LEDs: 2x 5MM RED, 1x 10MM WHITE, 1x 10MM GREEN
+- Breadbords: MB-102, 2x SYB-120
 
 ## Components Descriptions
 1. **DHT22 (Temperature and Humidity Sensor):**
@@ -32,12 +61,9 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 4. **LCD1601A HD44780 (Text Display):**
    The LCD1601A HD44780 display is used to output the sensor readings. It provides a clear visual representation of the data, allowing users to monitor the atmospheric conditions easily.
 
-5. **TTP224 (Keypad Module):**s
-   The TTP224 keypad module allows users to interact with the system by pressing different buttons. It provides multiple output pins, each corresponding to a different button, which can be read by the Arduino to trigger various actions.
-
 ## Setup and Installation
-1. Connect the Arduino UNO R3 to the laptop via USB cable.
-2. Upload the sketch (`arduino.ino`) to the Arduino using the Arduino IDE.
+1. Connect the Senzor Hub to the laptop via USB cable.
+2. Upload the sketch (`arduino.ino`) to the hub using the Arduino IDE.
 3. Start the Node.js server:
     ```bash
     cd server
@@ -47,8 +73,7 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 4. Open a web browser and visit http://localhost:3000 to view the interface.
 
 ## Interface
-- The interface visualizes the data from the sensors.
-- Pressing different buttons on the keypad module changes the display to show different sensor readings.
+- The interface visualizes the data from the sensors on WEB application and LCD Display.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
