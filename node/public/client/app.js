@@ -54,7 +54,7 @@ function updateDisplay(temperature, humidity, co2, noise, aspirationOn, airCondi
   noiseContainer.textContent = noise;
 }
 
-let [temperature, humidity, co2, noise, analogNoiseVal, aspirationOn, airConditionOn] = ['', '', '', '', '535', '0', '0']; // analogNoiseVal - The threshold point determining whether KY037 is 0 or 1.
+let [temperature, humidity, co2, noise, analogNoiseVal, aspirationOn, airConditionOn] = ['', '', '', '', '512', '0', '0']; // analogNoiseVal - The threshold point determining whether KY037 is 0 or 1.
 
 socket.on('sensorHubData', (data) => {
   [temperature, humidity, co2, noise, analogNoiseVal, aspirationOn, airConditionOn] = data.split(', ');
