@@ -1,32 +1,71 @@
 const socket = io();
+const root = document.getElementById('root');
+const sensorsPage = document.getElementById('sensors-page');
+const aboutPage = document.getElementById('about-page');
+const navigation = document.getElementById('navigation');
+navigation.addEventListener('click', router);
+function router(e) {
+  e.preventDefault();
+  const isRoute = e.target.href != undefined;
+  if(isRoute) {
+    const isSensorPage = e.target.href == 'http://localhost:3000/sensors';
+    isSensorPage ? renderSensorPage() : renderAboutPage();
+  }
+}
+function renderSensorPage() {
+  sensorsPage.style.display = 'flex';
+  aboutPage.style.display = 'none';
+}
+function renderAboutPage() {
+  sensorsPage.style.display = 'none';
+  aboutPage.style.display = 'flex';
+}
+
 const display = document.getElementById('display');
 const temperatureContainer = document.getElementById('temperature');
 const humidityContainer = document.getElementById('humidity');
 const co2Container = document.getElementById('co2');
 const noiseContainer = document.getElementById('noise');
+const aspirationContainer = document.getElementById('aspirationContainer');
+const aspiration = document.getElementById('aspiration');
+const airConditionContainer = document.getElementById('airConditionContainer');
+const airCondition = document.getElementById('airCondition');
 
-/**
- * Variables to store current values of temperature, humidity, CO2 levels, noise level, and analog noise value.
- * @type {string[]}
- */
-let [temperature, humidity, co2, noise, analogNoiseVal] = ['', '', '', '', '535']; // analogNoiseVal - The threshold point determining whether KY037 is 0 or 1.
+function updateDisplay(temperature, humidity, co2, noise, aspirationOn, airConditionOn) {
+  if(aspirationOn == '1') {
+    aspirationContainer.style.background = 'green';
+    aspiration.textContent = 'Аспирация включена';
+  } else {
+    aspirationContainer.style.background = 'red';
+    aspiration.textContent = 'Аспирация изключена';
+  }
 
-/**
- * Event listener for receiving sensor data and updating variables.
- * @param {string} data - Sensor data from serial-port COM7 when the sensor hub is connected in the format: "23.10 °C, 45.20 %, 5.91 ppm, 49.01 - 53.00 dB, 535"
- */
+  if(airConditionOn == '1') {
+    airConditionContainer.style.background = 'green';
+    airCondition.textContent = 'Климатик включен';
+  } else {
+    airConditionContainer.style.background = 'red';
+    airCondition.textContent = 'Климатик изключен';
+  }
+
+  temperatureContainer.textContent = temperature;
+  humidityContainer.textContent = humidity;
+  co2Container.textContent = co2;
+  noiseContainer.textContent = noise;
+}
+
+let [temperature, humidity, co2, noise, analogNoiseVal, aspirationOn, airConditionOn] = ['', '', '', '', '535', '0', '0']; // analogNoiseVal - The threshold point determining whether KY037 is 0 or 1.
+
 socket.on('sensorHubData', (data) => {
-  [temperature, humidity, co2, noise, analogNoiseVal] = data.split(', ');
-  updateDisplay(temperature, humidity, co2, noise);
+  [temperature, humidity, co2, noise, analogNoiseVal, aspirationOn, airConditionOn] = data.split(', ');
+  updateDisplay(temperature, humidity, co2, noise, aspirationOn, airConditionOn);
 });
 
 function getNoiseVal() {
   return Number(analogNoiseVal);
 }
 
-/**
- * Initializes a Plotly chart with the initial noise value.
- */
+// noise graphic
 Plotly.plot('chart', [
   {
     y: [getNoiseVal()],
@@ -34,21 +73,6 @@ Plotly.plot('chart', [
   }
 ]);
 
-/**
- * Updates the Plotly chart with the latest noise value at regular intervals.
- */
 setInterval(() => {
   Plotly.extendTraces('chart', { y: [[getNoiseVal()]] }, [0]);
 }, 30);
-
-/**
- * Updates the display of sensor data in the specified container.
- * @param {HTMLElement} container - The HTML container element to update.
- * @param {string} value - The sensor data value to display.
- */
-function updateDisplay(temperature, humidity, co2, noise) {
-  temperatureContainer.textContent = 'Температура: '+temperature;
-  humidityContainer.textContent = 'Влажност на въздуха: '+humidity;
-  co2Container.textContent = 'Ниво на въглероден диоксид във въздуха: '+co2;
-  noiseContainer.textContent = 'Ниво на шума: '+noise;
-}

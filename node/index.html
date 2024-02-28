@@ -12,15 +12,82 @@
     body {
       background-color: #f0f2f5;
     }
-    header{
+
+    header {
       display: flex;
       justify-content: center;
     }
-    main{
+
+    main {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    #about-page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #navigation {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 50px 0 50px 0;
+    }
+
+    #navigation a {
+      color: #5296c9;
+      font-size: 48px;
+      font-weight: bold;
+    }
+    #sensors-page {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+    #display{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+    #display div{
+      font-size: 32px;
+    }
+    #display div span {
+      font-weight: bold;
+    }
+    #chart-heading {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    #chart {
+      width: 900px;
+    }
+    #systems {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 0 25px 0;
+    }
+    #aspirationContainer, #airConditionContainer{
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      color: white;
+      font-size: large;
+      font-weight: bold;
+      background: red;
+      display: flex;
+      align-items: center;
+    }
+    #aspiration, #airCondition{
+      text-align: center;
     }
   </style>
 </head>
@@ -29,17 +96,33 @@
   <header>
     <img src="/client/assets/tu-gabrovo-header.png" alt="tu-gabrovo.logo">
   </header>
+  <nav id="navigation">
+    <a href="/sensors">Сензори</a>
+    <a href="/about">Информация за проекта</a>
+  </nav>
+
   <main>
-    <h1>Дипломна Работа - Сензорен хъб за екологичен мониторинг</h1>
-    <h2>на студента: инж. Илиян Николаев Мъцин, ОКС "Магистър", специалност: "Електроника", фак. № 22107005</h2>
-    <h2>Ръководител: доц. д-р инж. П. Проданов</h2>
-    <div id="display">
-      <div id="temperature">Температура: 23.10 °C</div>
-      <div id="humidity">Влажност на въздуха: 44.60 %</div>
-      <div id="co2">Ниво на въглероден диоксид във въздуха: 5.20 ppm</div>
-      <div id="noise">Ниво на шума: 49.01 - 53.00 dB</div>
-    </div>
-    <div id="chart"></div>
+    <div id="root"></div>
+    <section id="sensors-page">
+      <div id="display">
+        <div id="systems">
+          <div id="aspirationContainer"><span id="aspiration">Аспирация изключена</span></div>
+          <div id="airConditionContainer"><span id="airCondition">Климатик изключен</span></div>
+        </div>
+        <div>Температура: <span id="temperature">23.10 °C</span></div>
+        <div>Влажност на въздуха: <span id="humidity">44.60 %</span></div>
+        <div>Ниво на въглероден диоксид във въздуха: <span id="co2">5.20 ppm</span></div>
+        <div>Ниво на шума: <span id="noise">49.01 - 53.00 dB</span></div>
+      </div>
+
+      <h3 id="chart-heading">Графика на нивото на шум</h3>
+      <div id="chart"></div>
+    </section>
+    <section id="about-page">
+      <h1>Дипломна Работа - Сензорен хъб за екологичен мониторинг</h1>
+      <h2>на студента: инж. Илиян Николаев Мъцин, ОКС "Магистър", специалност: "Електроника", фак. № 22107005</h2>
+      <h2>Ръководител: доц. д-р инж. П. Проданов</h2>
+    </section>
   </main>
 </body>
 

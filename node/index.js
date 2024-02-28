@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 
@@ -13,6 +12,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 app.use(express.static('public'));
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
@@ -20,10 +20,6 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     parser.on('data', (data) => {
         io.emit('sensorHubData', data);
-    });
-    
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
     });
 });
 

@@ -32,6 +32,10 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 - **socket.io** (via cdn)
 - **plotly.js** (via cdn)
 
+## Screenshots from UI
+<img src="readmeAssets/screen1.JPG" alt="screenshot" style="width: 500px;">
+<img src="readmeAssets/screen2.JPG" alt="screenshot" style="width: 608px;">
+
 ## Electric Circuit
 <img src="readmeAssets/IMG_0433.jpg" alt="arduino-circuit" style="width: 500px;">
 <img src="readmeAssets/IMG_0434.jpg" alt="arduino-circuit" style="width: 500px;">
@@ -62,11 +66,11 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
    The LCD1601A HD44780 display is used to output the sensor readings. It provides a clear visual representation of the data, allowing users to monitor the atmospheric conditions easily.
 
 ## Setup and Installation
-1. Connect the Senzor Hub to the laptop via USB cable.
+1. Connect the Sensor Hub to the laptop via USB cable.
 2. Upload the sketch (`arduino.ino`) to the hub using the Arduino IDE.
 3. Start the Node.js server:
     ```bash
-    cd server
+    cd node
     npm install
     node server.js
     ```

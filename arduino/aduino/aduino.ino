@@ -17,6 +17,14 @@ int KY037_ANALOG_PIN = A0;
 int LED_DISCO_1 = 4;
 int LED_DISCO_2 = 5;
 
+int maxTemperature = 24;
+int minTemperature = 19;
+
+int maxPpm = 20;
+
+bool airConditionOn;
+bool aspirationOn;
+
 void setup() {
   dht.begin();
   pinMode(LED_WHITE, OUTPUT);
@@ -108,14 +116,18 @@ void loop() {
     digitalWrite(LED_DISCO_2, LOW);
   }
 
+
+  aspirationOn = ppm > maxPpm;
   // GREEN LED state based on MQ135 info
-  if (ppm > 20) {
+  if (aspirationOn) {
     digitalWrite(LED_GREEN, HIGH);
   } else {
     digitalWrite(LED_GREEN, LOW);
   }
+  
+  airConditionOn = temperature > maxTemperature || temperature < minTemperature;
   // WHITE LED state based on DHT22 info
-  if (temperature > 24) {
+  if (airConditionOn) {
     digitalWrite(LED_WHITE, HIGH);
   } else {
     digitalWrite(LED_WHITE, LOW);
@@ -149,7 +161,7 @@ void loop() {
   counter++;
 
 
-  Serial.println(String(temperature) + " °C, " + String(humidity) + " %, " + String(ppm) + " ppm, " + String(dBNoiseLevelWeb) + ", " + String(aNoiseLevel));
-  // output example: 23.00 °C, 41.50 %, 3.17 ppm, 49.01 - 53.00 dB, 521
+  Serial.println(String(temperature) + " °C, " + String(humidity) + " %, " + String(ppm) + " ppm, " + String(dBNoiseLevelWeb) + ", " + String(aNoiseLevel) + ", " + String(aspirationOn) + ", " + String(airConditionOn));
+  // output example: 23.00 °C, 41.50 %, 3.17 ppm, 49.01 - 53.00 dB, 521, 0, 1
   delay(2);
 }
