@@ -33,8 +33,8 @@ This project involves the use of Arduino UNO R3 and various sensors to monitor t
 - **plotly.js** (via cdn)
 
 ## Screenshots from UI
-<img src="readmeAssets/screen1.JPG" alt="screenshot" style="width: 500px;">
-<img src="readmeAssets/screen2.JPG" alt="screenshot" style="width: 500px;">
+<img src="readmeAssets/screen1.JPG" alt="screenshot" style="width: 700px;">
+<img src="readmeAssets/screen2.JPG" alt="screenshot" style="width: 700px;">
 
 ## Electric Circuit
 <img src="readmeAssets/IMG_0433.jpg" alt="arduino-circuit" style="width: 500px;">
